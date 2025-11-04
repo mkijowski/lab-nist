@@ -6,7 +6,7 @@
 
 ### Task 1 - Inventory
 
-* Your 5 CPE's that describe your laptop's stack.  Please include an OS, web browser, 
+* Your 5 CPE's that describe your laptop's software environment.  Please include an OS, web browser, 
   and 3 other valid CPE's for software on your laptop (ideally related to school). 
 
 ---
