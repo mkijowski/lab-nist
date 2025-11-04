@@ -4,25 +4,34 @@
 
 #### Name: <yourname>
 
+### Task 1 - Inventory
+
+* Your 5 CPE's that describe your laptop's stack.  Please include an OS, web browser, 
+  and 3 other valid CPE's for software on your laptop (ideally related to school). 
+
 ---
 
-### Task 1 - CPE
+### Task 2 - Your (not real) CPE
+
 
 * Your properly formatted CPE:
 
+Explanation.
 
 ---
 
-### Task 2 - CWE
+### Task 3 - CWE
 
 * Link to your top 25 CWE
 
+Description.
 
 ---
 
-### Task 3 - CVE
+### Task 4 - CVE
 
 * List your properly formatted CVE here:
 * Assign a CVSS score and defend it (why did you select what you selected in the caluclator)
 
 CVE writeup:
+

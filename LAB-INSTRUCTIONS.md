@@ -6,9 +6,10 @@ Table of Contents:
 
 * [Background](#background)
 * [Preparation](#preparation)
-* [Task 1: CPE](#task-1---cpe)
-* [Task 2: CWE](#task-2---cwe)
-* [Task 3: CVE](#task-3---cve)
+* [Task 1: Inventory](#task-1---inventory)
+* [Task 2: CPE](#task-2---cpe)
+* [Task 3: CWE](#task-3---cwe)
+* [Task 4: CVE](#task-4---cve)
 
 ---
 
@@ -32,9 +33,27 @@ Read the following:
 
 ---
 
-### Task 1 - CPE
+### Task 1 - Inventory
 
-CPE stands for Common Platform Enumeration and is how we as cybersecurity experts can refer to software in a specfic manner.  Research what a [well formed CPE name](https://nvlpubs.nist.gov/nistpubs/legacy/ir/nistir7695.pdf) would look like.
+CPE stands for Common Platform Enumeration and is how we as cybersecurity experts can refer to 
+software in a specfic manner.  The first step in any good security posture is to 
+have an understanding of what you are defending.  
+
+For this task, using the [CPE search demonstrated in class](https://nvd.nist.gov/products/cpe/search),
+find 5 CPE names for software you have installed on your laptop.  These 5 must include:
+
+* An Operating System
+* A web browser
+* At least 2 softwares related to CS/CEG/IT
+* The 5th software can be class related or personal, up to you!
+
+Simply list these in CPE 2.3 format (`cpe:2.3:[aoh]:etc...`) in your README.md to complete task 1.
+
+---
+
+### Task 2 - CPE
+
+The previous task demonstrated what a [well formed CPE name](https://nvlpubs.nist.gov/nistpubs/legacy/ir/nistir7695.pdf) would look like.
 
 Choose a piece of software you have wrote that exhibits one of the top 25 Common Weakness Enumerations from 2023 from your above research.  For this software you wrote, create a well formed CPE name for your made up vendor / software that include all relevant information to your CWE.  Make sure to include a version number in sem-ver format.
 
@@ -42,19 +61,19 @@ Explain all of the fields you chose to give specific information for, and all of
 
 ---
 
-### Task 2 - CWE
+### Task 3 - CWE
 
 CWE stands for NIST's Common Weakness Enumeration list.  After reading the top 25 CWE's of 2023, hopefully one of them jumps out as a weakness you have put into code sometime in your academic career.
 
 Provide a link to your chosen CWE, summarize the CWE in your words, and list some known vulnerabilities discovered using the same CWE (list them by CVE number / link and describe them briefly).
 
-For the last part of task 2, explain what you put into code and how it relates to the CWE chosen?  Explain how your code was vulnerable to it and what impact your it might have had.
+For the last part of this task, explain what you put into code and how it relates to the CWE chosen?  Explain how your code was vulnerable to it and what impact your it might have had.
 
 ---
 
-### Task 3 - CVE
+### Task 4 - CVE
 
-CVE stands for Common Vulnerability and Exposure.  Task 3 has you writing a CVE for your above platform regarding the vulnerability you discovered.
+CVE stands for Common Vulnerability and Exposure.  This task has you writing a CVE for your above platform regarding the vulnerability you discovered.
 
 Assume for the purposes of this assignment that I (Matt Kijowski) am the only CNA that can be used for this type of CVE.
 
@@ -62,3 +81,4 @@ The minimum data elements of a CVE are, affected products (with versions), vulne
 
 * For public reference please self refer to your github lab assignment.
 * For estimate CVSS score use [a public CVSS calculator](https://nvd.nist.gov/vuln-metrics/cvss/v3-calculator)
+
