@@ -5,6 +5,7 @@
 Table of Contents:
 
 * [Background](#background)
+* [Objectives](#objectives)
 * [Preparation](#preparation)
 * [Task 1: Inventory](#task-1---inventory)
 * [Task 2: CPE](#task-2---cpe)
@@ -15,70 +16,133 @@ Table of Contents:
 
 ### Background
 
-The purpose of this lab it to familiarize students with the NIST (NIST stands for National Institute of Standards and Technology) National Vulnerability Database or NVD.
+The purpose of this lab is to familiarize you with the National Vulnerability Database (NVD),
+run by NIST (the National Institute of Standards and Technology), and the naming standards
+that go with it.
 
-The NIST NVD provides useful threat intelligence and other information to cybersecurity professionals for the purpose of speeding up the discovery, analysis, and remediations of vulnerabilities in cyberspace.
+Security professionals use the NVD and related catalogs to find, analyze, and fix
+vulnerabilities faster.  Most organizations automate this, but in this lab you will do it by
+hand, using a piece of software *you* wrote that had a vulnerability.  (Don't worry, almost
+everyone has one.  Many common coding and scripting mistakes lead to a vulnerability.)
 
-While NVD tools are typically automated to provide better vulnerability management, this lab will have you selecting a piece of software you have worked on yourself that had a vulnerability (note, many common coding and scripting mistakes lead to a vulnerability) and manually reading through some of the top Weaknesses from 2023 that lead to known vulnerabilities.
+---
+
+### Objectives
+
+By the end of this lab you should be able to:
+
+* Describe a software environment using standard CPE names
+* Explain how CPE, CWE, CVE, CVSS, KEV, and EPSS relate to each other
+* Decide which vulnerabilities to fix first, and defend that decision
+* Connect a weakness in your own code to the real-world vulnerabilities it causes
+* Write a vulnerability report (CVE record) that someone else could act on
+
+---
 
 ### Preparation
 
-* Understand the interrelation of CPE, CWE, CVE, CVSS, and KEV (from lecture)
+* Review the CPE, CWE, CVE, CVSS, KEV, and EPSS slides from lecture,
+  especially *Putting it together: what do I patch first?*
 
 Read the following:
 
-* [Top 25 software CWE's](https://cwe.mitre.org/top25/)
-* [2024 top 10 CWE by KEV](https://cwe.mitre.org/top25/archive/2023/2023_kev_list.html)
+* [2025 CWE Top 25 Most Dangerous Software Weaknesses](https://cwe.mitre.org/top25/archive/2025/2025_cwe_top25.html)
+* [2025 Top 10 KEV Weaknesses](https://cwe.mitre.org/top25/archive/2025/2025_kev_list.html)
 * [Semantic Versioning 2.0.0](https://semver.org/)
+
+Tools you will use:
+
+* [NVD CPE search](https://nvd.nist.gov/products/cpe/search)
+* [NVD CVE search](https://nvd.nist.gov/vuln/search) and [CVE.org](https://www.cve.org/)
+* [CISA Known Exploited Vulnerabilities (KEV) catalog](https://www.cisa.gov/known-exploited-vulnerabilities-catalog)
+* [FIRST EPSS lookup](https://api.first.org/data/v1/epss?cve=CVE-2021-44228)
+  (change the CVE number at the end of the URL)
+* [FIRST CVSS v4.0 calculator](https://www.first.org/cvss/calculator/4.0)
+
+**Before you start:** Tasks 2, 3, and 4 all use the same program you wrote.  Skim the
+Top 25 list and pick your program and its weakness first, then work through the tasks in order.
 
 ---
 
 ### Task 1 - Inventory
 
-CPE stands for Common Platform Enumeration and is how we as cybersecurity experts can refer to 
-software in a specfic manner.  The first step in any good security posture is to 
-have an understanding of what you are defending.  
+CPE stands for Common Platform Enumeration.  It is the standard way to name a specific
+piece of software or hardware.  The first step in any good security posture is knowing
+what you are defending.
 
-For this task, using the [CPE search demonstrated in class](https://nvd.nist.gov/products/cpe/search),
-find 5 CPE names for software you have installed on your laptop.  These 5 must include:
+Using the [CPE search demonstrated in class](https://nvd.nist.gov/products/cpe/search),
+find 5 CPE names for software installed on your laptop.  These 5 must include:
 
-* An Operating System
+* An operating system
 * A web browser
-* At least 2 softwares related to CS/CEG/IT
-* The 5th software can be class related or personal, up to you!
+* At least 2 programs related to CS/CEG/IT (compiler, IDE, `git`, Python, etc.)
+* One more of your choice, class related or personal
 
-Simply list these in CPE 2.3 format (`cpe:2.3:[aoh]:etc...`) in your README.md to complete task 1.
+List each one in CPE 2.3 format (`cpe:2.3:[aoh]:vendor:product:version:...`), and match the
+version to what is actually installed when you can.  You will reuse these 5 CPEs in Lab 6.
 
 ---
 
 ### Task 2 - CPE
 
-The previous task demonstrated what a [well formed CPE name](https://nvlpubs.nist.gov/nistpubs/legacy/ir/nistir7695.pdf) would look like.
+Task 1 showed you what a [well formed CPE name](https://nvlpubs.nist.gov/nistpubs/legacy/ir/nistir7695.pdf)
+looks like.  Now write one for software that doesn't have one yet.
 
-Choose a piece of software you have wrote that exhibits one of the top 25 Common Weakness Enumerations from 2023 from your above research.  For this software you wrote, create a well formed CPE name for your made up vendor / software that include all relevant information to your CWE.  Make sure to include a version number in sem-ver format.
+Choose a program you have written that has one of the weaknesses from the 2025 CWE Top 25.
+Write a well formed CPE 2.3 name for it, using a made up vendor name (you!) and product name.
+The version must be in sem-ver format (for example `1.4.2`).
 
-Explain all of the fields you chose to give specific information for, and all of the fields you used the wildcard character and why you did so.
+Then explain:
+
+* Each field you filled in, and why you chose that value
+* Each field you left as a wildcard (`*`) or not applicable (`-`), and why
 
 ---
 
 ### Task 3 - CWE
 
-CWE stands for NIST's Common Weakness Enumeration list.  After reading the top 25 CWE's of 2023, hopefully one of them jumps out as a weakness you have put into code sometime in your academic career.
+CWE stands for Common Weakness Enumeration, a list of software and hardware weakness types
+maintained by MITRE.  A CVE is one specific bug.  A CWE is the *type* of mistake behind it.
 
-Provide a link to your chosen CWE, summarize the CWE in your words, and list some known vulnerabilities discovered using the same CWE (list them by CVE number / link and describe them briefly).
+1. Link to your chosen CWE and summarize it in your own words.
+2. Explain what you put into your code, how it relates to this CWE, and what an attacker could
+   have done with it.
+3. Why do you think the mistake made it into your code?  (Didn't know about it, deadline,
+   copied from an example, trusted user input, something else?)
+4. How would you fix it?  Use the *Potential Mitigations* section of the CWE page and say
+   which mitigation fits your code best.
+5. **Triage.**  Find 3 real CVEs caused by this same CWE.  Try to include at least one that
+   is in the KEV catalog.  For each CVE, record:
+   * The CVE ID (linked) and a one sentence description
+   * Its CVSS score, and the CVSS version that score uses
+   * Whether it is in the KEV catalog
+   * Its current EPSS score
 
-For the last part of this task, explain what you put into code and how it relates to the CWE chosen?  Explain how your code was vulnerable to it and what impact your it might have had.
+   You are responsible for patching all 3 and can only patch one today.  Rank them in the
+   order you would patch them and defend your ranking.  Does your order match a ranking by
+   CVSS alone?  Why or why not?
 
 ---
 
 ### Task 4 - CVE
 
-CVE stands for Common Vulnerability and Exposure.  This task has you writing a CVE for your above platform regarding the vulnerability you discovered.
+CVE stands for Common Vulnerabilities and Exposures.  In this task you will write a CVE record
+for the vulnerability in your own program.
 
-Assume for the purposes of this assignment that I (Matt Kijowski) am the only CNA that can be used for this type of CVE.
+Only a CVE Numbering Authority (CNA) can assign a CVE ID.  For this assignment, I (Matt
+Kijowski) am the only CNA for your software, so use `CVE-2026-NNNNN` as a placeholder ID.
 
-The minimum data elements of a CVE are, affected products (with versions), vulnerability type and root cause (reference your CWE), impact (estimated base / overall CVSS score), and at least one public reference.
+Your CVE record must include at least:
 
-* For public reference please self refer to your github lab assignment.
-* For estimate CVSS score use [a public CVSS calculator](https://nvd.nist.gov/vuln-metrics/cvss/v3-calculator)
+* **Affected product(s) and version(s)**: use your CPE from Task 2
+* **Vulnerability type and root cause**: reference your CWE from Task 3
+* **Description**: what the bug is and what an attacker could do with it, in 2 to 4 sentences
+* **Impact**: a CVSS v4.0 base score *and* vector string, from the
+  [FIRST CVSS v4.0 calculator](https://www.first.org/cvss/calculator/4.0)
+* **Reference**: at least one public reference.  Link to your own GitHub lab repository.
 
+Then defend your CVSS score: explain why you chose each metric value in the calculator.
+
+Since April 2026 the NVD no longer adds its own CVSS score to most new CVEs.  For most new CVEs,
+the score the CNA publishes is the only one anyone sees.  Score it like someone will patch (or
+ignore) it based on your number, because in the real world they will.
